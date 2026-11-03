@@ -1,0 +1,9 @@
+{
+	"name": "States Extended",
+	"description": "rofl script by FIGRJA 
+	by 11.10.26",
+	"restart":false,
+	"runsGlobally": true,
+	"color": [170, 0, 255],
+	"iconFramerate": 0
+}
