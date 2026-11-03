@@ -67,7 +67,7 @@ var HXmodules = [];
 function onCreatePost() {
     var news = true;
     for (i in Iris.instances){
-        if (i.config.name.indexOf(Path.normalize(this.config.name).split("/").pop())>=0&&i!=this)
+        if (i.config.name.indexOf(Path.normalize(this.config.name).split("/").pop().split("_")[0])>=0&&i!=this)
             news = false;
         //debugPrint(i.config.name+" "+this.config.name);
         //debugPrint((i!=this)+" "+(news));
