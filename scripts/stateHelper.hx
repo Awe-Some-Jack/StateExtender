@@ -321,6 +321,8 @@ function signalOnSwitchPost() {
 function signalOnSSCreate(SS) {
     createModules(null,SS);
     callHX("onSubstateCreate",[SS]);
+    SS.subStateOpened.add(signalOnSSCreate);
+    SS.subStateClosed.add(signalOnSSDestroy);
     trace("preSS "+Type.getClassName(Type.getClass(SS)));
 }
 function signalOnSSDestroy(SS) {
