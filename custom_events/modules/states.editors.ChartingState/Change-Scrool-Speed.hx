@@ -2,7 +2,8 @@ import backend.ClientPrefs;
 var songSpeedType = ClientPrefs.getGameplaySetting('scrolltype');
 var songSpeedTween;
 function onCheckEvent(ev) {
-    if (subState==null)return;
+    if (subState==null)
+		return;
     if(ev[0]=="Change Scroll Speed"){
         //addOutText(ev);
 
@@ -16,16 +17,23 @@ function onCheckEvent(ev) {
 					flValue2 = 0;
 
 				var newValue:Float = PlayState.SONG.speed * ClientPrefs.getGameplaySetting('scrollspeed') * flValue1;
-				if (flValue2 <= 0)
-					subState.songSpeed = newValue;
+				if (flValue2 <= 0 || Std.string(flValue2)=="nan")
+					subState.songSpeed = newValue ?? PlayState.SONG.speed;
 				else
 					songSpeedTween = FlxTween.tween(subState, {songSpeed: newValue}, flValue2 / subState.playbackRate, {
 						ease: FlxEase.linear,
 						onComplete: function(twn:FlxTween)
 						{
 							songSpeedTween = null;
+						},
+						onUpdate: (_)->{
+						trace(subState.songSpeed);
+							
 						}
 					});
+				trace(newValue);
+				trace(subState.songSpeed);
+				trace(flValue2);
 			}
     }
                 
