@@ -181,10 +181,10 @@ function StartHXModule(module,?dir) {
             DeltaRuneCode.set("CacheSystem",CacheSystem);//with fake
             DeltaRuneCode.set("NativeFileSystem",NativeFileSystem);//with fake
             DeltaRuneCode.set("StateHelper",objThis);
-            DeltaRuneCode.set("setGlobalVar",(_var)->{
-                gVars.set(_var,DeltaRuneCode.interp.resolve(_var));
+            DeltaRuneCode.set("setGlobalVar",function(_var,?_r){
+                gVars.set(_var,_r ?? DeltaRuneCode.interp.resolve(_var));
                 for (h in HXmodules)
-                    h.set(_var,DeltaRuneCode.interp.resolve(_var));
+                    h.set(_var,_r ?? DeltaRuneCode.interp.resolve(_var));
             });
             for (m in gVars.keys())
                 DeltaRuneCode.set(m,gVars.get(m));
@@ -299,7 +299,7 @@ function signalOnSwitch() {
     callHX("onSwitch");
     signalOnDestroy();
     trace("switched");
-    trace(FlxG.game._requestedState);
+    //trace(FlxG.game._requestedState);
     if (switchTimer<0){
         //FlxG.game._requestedState = new MasterEditorMenu();
         //FlxG.game._skipSplash = true;
