@@ -193,11 +193,11 @@ function StartHXModule(module,?dir) {
                     //if (Type.typeOf(V)==)
                     DeltaRuneCode.interp.parentInstance = Type.createEmptyInstance(Type.resolveClass(V));  
                     DeltaRuneCode.set("super",DeltaRuneCode.interp.parentInstance);
-                    Reflect.setField(obj,"super",DeltaRuneCode.interp.parentInstance);
+                    //Reflect.setField(obj,"super",DeltaRuneCode.interp.parentInstance);
                     DeltaRuneCode.set("super",Reflect.makeVarArgs(function (?args){ 
                         DeltaRuneCode.interp.parentInstance = Type.createInstance(Type.getClass(DeltaRuneCode.interp.parentInstance),args ?? []);  
                         DeltaRuneCode.set("super",DeltaRuneCode.interp.parentInstance);
-                        Reflect.setField(obj,"super",DeltaRuneCode.interp.parentInstance);
+                        //Reflect.setField(obj,"super",DeltaRuneCode.interp.parentInstance);
                     }));
                     DeltaRuneCode.set("MyExtendIs",(V)->{return;});
                 });

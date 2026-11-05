@@ -19,8 +19,9 @@ function onUpdatePost() {
     }
 }
 function takeScreen() {
-    previousLoadingScreen = new FlxSprite(0, 0, BitmapData.fromImage(FlxG.stage.window.readPixels()));
-    previousLoadingScreen.setGraphicSize(FlxG.width,FlxG.height);
-    previousLoadingScreen.updateHitbox();
+    previousLoadingScreen = BitmapData.fromImage(FlxG.stage.window.readPixels());
+    //previousLoadingScreen = new FlxSprite(0, 0, BitmapData.fromImage(FlxG.stage.window.readPixels()));
+    //previousLoadingScreen.setGraphicSize(FlxG.width,FlxG.height);
+    //previousLoadingScreen.updateHitbox();
     setGlobalVar('previousLoadingScreen',previousLoadingScreen);
 }

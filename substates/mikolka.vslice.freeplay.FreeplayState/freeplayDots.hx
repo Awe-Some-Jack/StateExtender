@@ -1,5 +1,8 @@
 //package states.mikolka.vslice.ui.MainMenuState;
-import mikolka.vslice.freeplay.FreeplayDJ;
+//import mikolka.vslice.freeplay.FreeplayDJ;
+//import mikolka.compatibility.ModsHelper;
+//import openfl.filters.ShaderFilter;
+//import shaders.BlueFade;
 var created:Bool = false;
 var dots:Array = [];
 final DEFAULT_DOTS_GROUP_POS:Array<Int> = [260, 175];
@@ -8,6 +11,13 @@ final maxDotsPerRow:Int = 8;
 var lastcursong ;
 var lastcurdiff ;
 var timerCon;var black ;
+
+//var fadeShader:BlueFade = new BlueFade();
+//function onSubstateCreate() {
+//    
+//	var fadeShaderFilter:ShaderFilter = new ShaderFilter(fadeShader);
+//	ModsHelper.setFiltersOnCam(rankCamera, [fadeShaderFilter]);
+//}
 
 function onUpdatePost(e) {
     //if (subState==null){destroy();return;}
@@ -44,13 +54,15 @@ function onUpdatePost(e) {
         //trace(dj.currentState);
         if (dj.currentState == "Confirm"&&timerCon==null){
             timerCon = styleData?.getStartDelay() ?? 0.2;
-            black = new FlxSprite(0,0);
-            black.makeGraphic(FlxG.width,FlxG.height,0xFF000000);
-            black.alpha = 0;
-            black.camera = FlxG.cameras.list[FlxG.cameras.list.length-1];
-            //black.cameras = [rankCamera];
-            FlxG.state.subState.add(black);
-            FlxTween.tween(black,{'alpha': 1},timerCon/4,{startDelay: timerCon*3/4});
+		    funnyCam.filtersEnabled = true;
+		    fadeShader.fade(1.0, 0, timerCon/6, {ease: FlxEase.quadIn,startDelay: timerCon*4/6});
+            //black = new FlxSprite(0,0);
+            //black.makeGraphic(FlxG.width,FlxG.height,0xFF000000);
+            //black.alpha = 0;
+            //black.camera = FlxG.cameras.list[FlxG.cameras.list.length-1];
+            ////black.cameras = [rankCamera];
+            //FlxG.state.subState.add(black);
+            //FlxTween.tween(black,{'alpha': 1},timerCon/4,{startDelay: timerCon*3/4});
             trace("alarm "+timerCon);
         }
     }
@@ -63,7 +75,7 @@ function destroy() {
         d.destroy();
     }
     dots = [];
-    black?.destroy();
+    //black?.destroy();
 }
 function onDestroy() {
     destroy();

@@ -982,7 +982,17 @@ function updateCustomWaveform(sameWave,_curSec,?_lenSec,?sound,?color) {
                 wavData[i][ii] = [0];
 
 		var width:Int = Std.int(ChartingState.GRID_SIZE * ChartingState.GRID_COLUMNS_PER_PLAYER * 2);
-		var height:Int = Std.int(gridBg.height);
+		var height:Int = Std.int(switch(_curSec-curSec)
+                    {
+                        case -1:
+                            prevGridBg.height;
+                        case 0:
+                            gridBg.height;
+                        case 1:
+                            nextGridBg.height;
+                        //default:
+                            //trace(m);
+                    });
 
         if (sameWave==null||(!sameWave.alive)){
             sameWave = new FlxSprite(0, 0);
